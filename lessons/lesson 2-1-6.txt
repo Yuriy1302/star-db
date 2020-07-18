@@ -1,0 +1,66 @@
+//Класс для изоляции сетевого кода от остальных частей приложения
+class SwapiService {
+
+  //Чтобы не писать длинную строк, постоянную ее часть можно
+  //вынести в переменную. Нижнее подчеркивание информирует
+  //других разработчиков, что это приватная чать класса,
+  //ее не следует использовать или изменять снаружи
+  _apiBase = 'https://swapi.dev/api';
+
+
+  async getResource(url) { //На основании этой Ф. можем получать ресурсы с сервера, которые нам нужны
+    const res = await fetch(`${this._apiBase}${url}`); //Обновим метод с учемом _apiBase
+    
+    if (!res.ok) {
+      throw new Error(`Could not fetch ${url} 
+        received ${res.status}`);
+    }
+
+    return await res.json();
+  }
+
+  //Получаем всех персонаже
+  async getAllPeople() {
+    /* return this.getResource(`/people/`); */ //Передаем часть url, который идет за api
+
+    //Сделаем, чтобы Ф. возвращала только массив имен
+    const res = await this.getResource('/people/');
+    return res.results;
+  }
+
+  //Также делаем Ф. для получения конкретного персонажа по id
+  async getPersone(id) {
+    return this.getResource(`/people/${id}/`);
+  }
+
+  //Делаем тоже самое для планет и кораблей
+  async getAllPlanets() {
+    const res = await this.getResource('/planets/');
+    return res.results;
+  }
+
+  async getPlanet(id) {
+    return this.getResource(`/planets/${id}/`);
+  }
+
+  async getAllStarships() {
+    const res = await this.getResource('/starships/');
+    return res.results;
+  }
+
+  async getStarship(id) {
+    return this.getResource(`/starships/${id}/`);
+  }
+
+}
+
+//Использование методов из класса
+const swapi = new SwapiService(); //Создали экземпляр класса
+
+
+
+swapi.getAllStarships().then((ssh) => {
+  ssh.forEach(s => console.log(s));
+});
+
+swapi.getStarship(5).then((body) => console.log('SSh 4: ', body.name));

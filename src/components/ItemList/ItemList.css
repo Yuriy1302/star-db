@@ -1,0 +1,15 @@
+.item-list .list-group-item {
+    cursor: pointer;
+  }
+  
+  .item-list .list-group-item:hover {
+    background-color: #444;
+  }
+
+  .person-image {
+    width: 200px;
+  }
+  
+  .list-group-item span {
+    margin-right: 10px;
+  }
