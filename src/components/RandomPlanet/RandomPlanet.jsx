@@ -24,6 +24,10 @@ class RandomPlanet extends React.Component {
     this.interval = setInterval(this.updatePlanet, 15000);
   }
 
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
   onError = () => {
     this.setState({
       error: true,

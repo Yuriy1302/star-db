@@ -18,3 +18,11 @@
   .person-details .list-group-item .term{
     margin-right: .5rem;
   }
+
+  .span-select {
+    width: 100%;
+    text-align: center;
+    color: #f1f1f1;
+    padding-top: 1rem;
+    font-size: 1.2rem;
+  }

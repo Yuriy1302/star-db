@@ -44,7 +44,7 @@ class PersonDetails extends React.Component {
   render() {
 
     if (!this.state.person) {
-      return <span>Selected a person fron list</span>
+      return <span className="span-select">Selected a person from list</span>
     }
 
     const { id, name, gender,
@@ -65,7 +65,7 @@ class PersonDetails extends React.Component {
             alt="character" />
           
           <div className="card-body">
-            <h4>{name} {this.props.personId}</h4>
+            <h4>{name}</h4>
             <ul className="list-group list-group-flush">
               <li className="list-group-item">
                 <span className="term">Gender</span>

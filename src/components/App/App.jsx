@@ -15,7 +15,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       showRandomPlanet: true,
-      selectedPersone: 5,
+      selectedPersone: null,
     }
   }
 
