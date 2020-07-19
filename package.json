@@ -2,7 +2,7 @@
   "name": "jm-star-db",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://yuriy1302.github.io/movies-pr/",
+  "homepage": "http://yuriy1302.github.io/star-db/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
