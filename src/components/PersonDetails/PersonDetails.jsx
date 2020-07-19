@@ -22,12 +22,13 @@ class PersonDetails extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.personId !== prevProps.personId) {
-      this.setState({ person: null });
+      //this.setState({ person: null });
       this.updatePerson();
     }
   }
 
   updatePerson = () => {
+    
     const { personId } = this.props;
 
     if (!personId) {
@@ -42,19 +43,17 @@ class PersonDetails extends React.Component {
   }
   
   render() {
+    const { person } = this.state;
 
-    if (!this.state.person) {
+    if (!person) {
       return <span className="span-select">Selected a person from list</span>
     }
 
     const { id, name, gender,
             birthYear, eyeColor } = this.state.person;
     
-    const { person } = this.state;
-    
     const spinner = !person ? <Spinner /> : null;
-       
-
+    
     return (
       <div className="person-details card">
         {spinner}
