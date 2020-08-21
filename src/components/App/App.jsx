@@ -4,11 +4,14 @@ import Header from '../Header';
 import RandomPlanet from '../RandomPlanet';
 import ItemList from '../ItemList';
 import PersonDetails from '../PersonDetails';
-
-
-import './App.css';
+import ErrorButton from '../ErrorButton';
+import ErrorIndicator from '../ErrorIndicator';
 /* import PlanetDetails from '../PlanetDetails';
 import StarshipDetails from '../StarshipDetails'; */
+
+import './App.css';
+
+
 
 class App extends React.Component {
   constructor(props) {
@@ -16,6 +19,7 @@ class App extends React.Component {
     this.state = {
       showRandomPlanet: true,
       selectedPersone: null,
+      hasError: false,
     }
   }
 
@@ -29,7 +33,16 @@ class App extends React.Component {
     this.setState({ selectedPersone: id });
   }
 
+  componentDidCatch() {
+    console.log('componentDidCatch');
+    this.setState({ hasError: true });  
+  }
+
   render() {
+
+    if (this.state.hasError) {
+      return <ErrorIndicator />
+    }
 
     const randomPlanet = this.state.showRandomPlanet ?
       <RandomPlanet /> :
@@ -39,10 +52,13 @@ class App extends React.Component {
       <div className="container">
         <Header />
         {randomPlanet}
-        <button className="toggle-planet btn btn-warning btn-lg"
-          onClick={this.toggleRandomPlanet}>
-          Toggle Random Planet
-        </button>
+        <div className="row mb2 button-row">
+          <button className="toggle-planet btn btn-warning btn-lg"
+            onClick={this.toggleRandomPlanet}>
+            Toggle Random Planet
+          </button>
+          <ErrorButton />
+        </div>
 
         <div className="row mb2">
           <div className="col-md-6">

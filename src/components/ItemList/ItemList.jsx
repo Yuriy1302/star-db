@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
 import SwapiService from '../../services/swapi-service';
+import Spinner from '../Spinner';
+import ErrorIndicator from '../ErrorIndicator';
 
 import './ItemList.css';
-import Spinner from '../Spinner';
+
 
 class ItemList extends Component {
 
@@ -12,7 +14,9 @@ class ItemList extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			peopleList: null
+			peopleList: null,
+			loading: true,
+			error: false,
 		};
 	};
 
@@ -23,7 +27,15 @@ class ItemList extends Component {
 				this.setState({
 					peopleList
 				});
-			}); //Добавить catch
+			})
+			.catch(this.onError); //Добавить catch
+	}
+	
+	onError = () => {
+    this.setState({
+      error: true,
+      loading: false
+    })
   }
   
   renderItems = (arr) => {
@@ -40,8 +52,12 @@ class ItemList extends Component {
 
 	render() {
 
-    const { peopleList } = this.state;
+		const { peopleList, error } = this.state;
+		
 
+		if (error) {
+			return <ErrorIndicator />
+		};
     if (!peopleList) {
       return <Spinner />
     }
@@ -49,6 +65,7 @@ class ItemList extends Component {
     const items = this.renderItems(peopleList);
 
 		return(
+
 			<ul className="item-list list-group">
 				{items}
 			</ul>

@@ -11,7 +11,7 @@
 }
 
 .header ul li:hover {
-  background-color: rgb(110, 110, 110);
+  background-color:#444;
 }
  
 .header a:hover {
