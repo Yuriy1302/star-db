@@ -3,6 +3,7 @@ import React from 'react';
 import SwapiService from '../../services/swapi-service';
 import Spinner from '../Spinner';
 import ErrorIndicator from '../ErrorIndicator';
+import ErrorButton from '../ErrorButton';
 
 import './PersonDetails.css';
 
@@ -83,6 +84,7 @@ class PersonDetails extends React.Component {
               <span>{eyeColor}</span>
             </li>
           </ul>
+          <ErrorButton />
         </div>
       </div>
     );
